@@ -17,6 +17,9 @@ namespace Xrcadia.Core.StateMachine
         /// <summary>The active error (XRC-99), bound by the error screens. Null when healthy.</summary>
         public ErrorContext Error { get; } = new ErrorContext();
 
+        /// <summary>The in-flight run and its last outcome (XRC-95); read by Session/Results.</summary>
+        public RunReport Run { get; } = new RunReport();
+
         public StateContext(IGameStateMachine machine, ServiceRegistry services, LoadingProgress loading)
         {
             Machine = machine;
