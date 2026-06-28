@@ -42,6 +42,8 @@ namespace Xrcadia.Core.StateMachine
             t.OnTrigger(GameState.MainMenu, GameTrigger.Continue, GameState.Hub);
             t.OnTrigger(GameState.MainMenu, GameTrigger.NewGame, GameState.Hub);
             t.OnTrigger(GameState.MainMenu, GameTrigger.Quit, GameState.Shutdown);
+            t.OnTrigger(GameState.Hub, GameTrigger.LaunchRun, GameState.MRSetup);
+            t.OnTrigger(GameState.Hub, GameTrigger.ExitToMenu, GameState.MainMenu);
             // Settings is an overlay (push/pop) — handled by the overlay API, not as a base edge.
 
             return t;

@@ -31,5 +31,13 @@ namespace TheLoop.Tests.EditMode
 
             await WaitUntilIdle(h);
         }
+
+        /// <summary>Cold boot through to the Hub via New Game (creates a profile, enters Hub).</summary>
+        public static async Task DriveToHub(TestHarness h)
+        {
+            await DriveToMainMenu(h);
+            await h.Machine.Fire(GameTrigger.NewGame);
+            await WaitUntilIdle(h);
+        }
     }
 }
