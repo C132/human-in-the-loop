@@ -5,14 +5,14 @@ using Xrcadia.UI;
 namespace TheLoop.App.Screens
 {
     /// <summary>
-    /// Results / debrief screen (XRC-97). Presents the run outcome, the payout the Results state
-    /// committed, and a readable "what the agent learned" recap (the transparent-agent pillar).
-    /// Single exit: Return to Hub.
+    /// Results / debrief screen (XRC-97 / XRC-100). A colored outcome badge, the committed
+    /// payout as a stat block, and a readable "what the agent learned" recap. Single exit: Hub.
     /// </summary>
     public sealed class ResultsScreen : ScreenBase
     {
-        private Label _outcome;
-        private Label _rewards;
+        private Label _badge;
+        private Label _credits;
+        private Label _xp;
         private Label _recap;
 
         public override GameState State => GameState.Results;
@@ -22,15 +22,29 @@ namespace TheLoop.App.Screens
             var root = Ui.Scrim();
 
             var panel = Ui.Panel();
+            panel.AddToClassList("panel--wide");
+            panel.Add(Ui.Eyebrow("RUN DEBRIEF"));
             panel.Add(Ui.Heading("Debrief"));
-            _outcome = Ui.Subtitle(string.Empty);
-            _rewards = Ui.Prompt(string.Empty);
-            _recap = Ui.Prompt(string.Empty);
-            panel.Add(_outcome);
-            panel.Add(_rewards);
-            panel.Add(_recap);
 
-            panel.Add(Ui.MenuButton("Return to Hub", () => Context.Machine.GoTo(GameState.Hub).Forget()));
+            _badge = new Label();
+            _badge.AddToClassList("badge");
+            panel.Add(_badge);
+
+            var rewards = Ui.Section("REWARDS");
+            _credits = Stat();
+            _xp = Stat();
+            rewards.Add(Ui.Row("Credits earned", _credits));
+            rewards.Add(Ui.Row("Agent XP", _xp));
+            panel.Add(rewards);
+
+            var learned = Ui.Section("WHAT THE AGENT LEARNED");
+            _recap = Ui.Body(string.Empty);
+            learned.Add(_recap);
+            panel.Add(learned);
+
+            var bar = Ui.ButtonBar();
+            bar.Add(Ui.PrimaryButton("Return to Hub", () => Context.Machine.GoTo(GameState.Hub).Forget()));
+            panel.Add(bar);
 
             root.Add(panel);
             return root;
@@ -38,18 +52,32 @@ namespace TheLoop.App.Screens
 
         public override void Bind()
         {
-            var debrief = Context.Run.LastDebrief;
-            if (debrief == null)
+            _badge.RemoveFromClassList("badge--success");
+            _badge.RemoveFromClassList("badge--danger");
+
+            var d = Context.Run.LastDebrief;
+            if (d == null)
             {
-                _outcome.text = "Run complete.";
-                _rewards.text = string.Empty;
+                _badge.text = "RUN COMPLETE";
+                _credits.text = "—";
+                _xp.text = "—";
                 _recap.text = string.Empty;
                 return;
             }
 
-            _outcome.text = debrief.Result == RunResult.Success ? "Run successful" : "Run failed";
-            _rewards.text = $"+{debrief.CurrencyAwarded} credits · +{debrief.XpAwarded} agent XP";
-            _recap.text = debrief.LearningRecap;
+            var ok = d.Result == RunResult.Success;
+            _badge.text = ok ? "RUN SUCCESSFUL" : "RUN FAILED";
+            _badge.AddToClassList(ok ? "badge--success" : "badge--danger");
+            _credits.text = "+" + d.CurrencyAwarded;
+            _xp.text = "+" + d.XpAwarded;
+            _recap.text = d.LearningRecap;
+        }
+
+        private static Label Stat()
+        {
+            var l = new Label();
+            l.AddToClassList("stat");
+            return l;
         }
     }
 }

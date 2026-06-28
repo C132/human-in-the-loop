@@ -13,9 +13,9 @@ namespace TheLoop.App.Screens
             var root = Ui.Scrim();
 
             var panel = Ui.Panel();
-            panel.Add(Ui.Title("XRCADIA"));
-            panel.Add(Ui.Subtitle("Human in the Loop"));
-            panel.Add(Ui.Prompt("Look or press to skip"));
+            panel.Add(Ui.Eyebrow("XRCADIA  PRESENTS"));
+            panel.Add(Ui.Title("Human in the Loop"));
+            panel.Add(Ui.Caption("Look or press to skip"));
             root.Add(panel);
 
             // Any click/poke on the splash requests a skip (gated by min dwell in the state).

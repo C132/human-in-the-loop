@@ -3,31 +3,32 @@
    crisp type scale and consistent spacing. Built to read as investor-ready across every screen. */
 
 :root {
-    /* Surfaces (layered, near-opaque so overlays never bleed the base through) */
-    --bg-0: rgb(6, 9, 15);
-    --bg-1: rgb(10, 15, 24);
-    --scrim: rgba(4, 7, 12, 0.88);
-    --panel: rgb(17, 24, 38);
-    --panel-2: rgb(23, 32, 49);
-    --panel-inset: rgb(13, 19, 30);
+    /* Brand palette — matches the Xrcadia pitch deck: warm amber on near-black, cream text.
+       Surfaces are layered and near-opaque so overlays never bleed the base through. */
+    --bg-0: rgb(10, 9, 12);
+    --bg-1: rgb(16, 14, 18);
+    --scrim: rgba(8, 7, 10, 0.90);
+    --panel: rgb(26, 24, 28);
+    --panel-2: rgb(36, 33, 39);
+    --panel-inset: rgb(19, 17, 21);
 
-    /* Lines */
-    --line: rgba(120, 160, 210, 0.16);
-    --line-strong: rgba(120, 160, 210, 0.30);
+    /* Lines (warm, low-contrast) */
+    --line: rgba(255, 216, 130, 0.16);
+    --line-strong: rgba(255, 216, 130, 0.32);
 
-    /* Accent — the "signal" cyan, plus a warm amber for highlights */
-    --accent: rgb(74, 200, 255);
-    --accent-deep: rgb(40, 120, 170);
-    --accent-soft: rgba(74, 200, 255, 0.14);
-    --amber: rgb(255, 196, 110);
-    --success: rgb(120, 224, 170);
-    --danger: rgb(255, 116, 108);
+    /* Accent — signal amber/gold, with a deeper amber for pressed/secondary states */
+    --accent: rgb(255, 213, 92);
+    --accent-deep: rgb(239, 159, 39);
+    --accent-soft: rgba(255, 213, 92, 0.13);
+    --amber: rgb(250, 199, 117);
+    --success: rgb(118, 255, 138);
+    --danger: rgb(226, 75, 74);
 
     /* Text */
-    --text: rgb(234, 242, 250);
-    --text-dim: rgb(160, 176, 196);
-    --text-faint: rgb(110, 126, 146);
-    --on-accent: rgb(6, 14, 22);
+    --text: rgb(255, 251, 240);
+    --text-dim: rgb(193, 183, 168);
+    --text-faint: rgb(138, 129, 116);
+    --on-accent: rgb(26, 24, 24);
 
     /* Spacing scale */
     --s-1: 6px;
@@ -265,8 +266,8 @@
 }
 
 .button--primary:hover {
-    background-color: rgb(120, 216, 255);
-    border-color: rgb(120, 216, 255);
+    background-color: rgb(255, 226, 140);
+    border-color: rgb(255, 226, 140);
 }
 
 /* Quiet / destructive-adjacent. */
@@ -341,7 +342,7 @@
 }
 
 .unity-base-slider__dragger:hover {
-    background-color: rgb(150, 224, 255);
+    background-color: rgb(255, 226, 140);
     scale: 1.1 1.1;
 }
 

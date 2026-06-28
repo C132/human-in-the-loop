@@ -19,12 +19,20 @@ namespace TheLoop.App.Screens
             var root = Ui.Scrim();
 
             var panel = Ui.Panel();
+
+            var badge = new Label("UNRECOVERABLE");
+            badge.AddToClassList("badge");
+            badge.AddToClassList("badge--danger");
+            panel.Add(badge);
+
             panel.Add(Ui.Heading("Something broke"));
             _message = Ui.Subtitle(string.Empty);
             panel.Add(_message);
 
-            panel.Add(Ui.MenuButton("Return to Main Menu",
+            var bar = Ui.ButtonBar();
+            bar.Add(Ui.PrimaryButton("Return to Main Menu",
                 () => Context.Machine.SafeExitToMainMenu().Forget()));
+            panel.Add(bar);
 
             root.Add(panel);
             return root;
