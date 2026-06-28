@@ -12,7 +12,7 @@ namespace Xrcadia.App
     /// Composition root. Runs automatically after the scene loads (no manual steps), wires the
     /// FSM + services + world-space UI router into a persistent object, and starts the cold-boot
     /// flow. This is the decision called out in XRC-87: a single persistent bootstrap object
-    /// with state-driven world-space UIDocuments — no additive scene loading for Boot → MainMenu
+    /// with state-driven world-space UI panels — no additive scene loading for Boot → MainMenu
     /// (no gameplay assets are involved yet).
     /// </summary>
     public static class Bootstrap

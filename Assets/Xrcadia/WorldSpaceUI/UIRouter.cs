@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEngine.UIElements;
 using Xrcadia.Core.StateMachine;
 using Debug = UnityEngine.Debug;
 
@@ -22,14 +23,21 @@ namespace Xrcadia.UI
         public UIRouter(IUIHost host)
         {
             _host = host;
+            _host.RootChanged += OnRootChanged;
         }
 
-        /// <summary>Register a screen and parent its (hidden) subtree under the host root.</summary>
+        /// <summary>
+        /// Register a screen and parent its (hidden) subtree under the host root. The root is
+        /// built asynchronously by the PanelRenderer, so when it isn't ready yet the screen is
+        /// attached later by <see cref="OnRootChanged"/>.
+        /// </summary>
         public void Register(ScreenBase screen, StateContext context)
         {
             screen.Initialize(context);
-            _host.Root.Add(screen.Root);
             _screens[screen.State] = screen;
+
+            if (_host.Root != null)
+                _host.Root.Add(screen.Root);
         }
 
         /// <summary>Begin reacting to FSM transitions.</summary>
@@ -46,6 +54,16 @@ namespace Xrcadia.UI
                 _machine.Transitioned -= OnTransitioned;
                 _machine = null;
             }
+
+            _host.RootChanged -= OnRootChanged;
+        }
+
+        // Attaches every registered screen to the freshly (re)built root. Screens keep their own
+        // show/hide state, so a reload restores the visible screen without router intervention.
+        void OnRootChanged(VisualElement root)
+        {
+            foreach (var screen in _screens.Values)
+                root.Add(screen.Root);
         }
 
         void OnTransitioned(StateChange change)
