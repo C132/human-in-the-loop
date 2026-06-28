@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Globalization;
 using UnityEditor;
 using UnityEngine;
 
@@ -160,27 +159,7 @@ namespace Devinw.Playerprefmanager.Editor
 
         private bool Write(PrefRow row)
         {
-            switch (row.Type)
-            {
-                case PlayerPrefType.Int:
-                    if (!int.TryParse(row.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var intValue))
-                        return false;
-                    PlayerPrefs.SetInt(row.Key, intValue);
-                    break;
-
-                case PlayerPrefType.Float:
-                    if (!float.TryParse(row.Value, NumberStyles.Float, CultureInfo.InvariantCulture, out var floatValue))
-                        return false;
-                    PlayerPrefs.SetFloat(row.Key, floatValue);
-                    break;
-
-                case PlayerPrefType.String:
-                    PlayerPrefs.SetString(row.Key, row.Value ?? string.Empty);
-                    break;
-            }
-
-            PlayerPrefs.Save();
-            return true;
+            return PlayerPrefValue.TryWrite(row.Key, row.Type, row.Value);
         }
 
         private void Delete(PrefRow row)
@@ -214,20 +193,7 @@ namespace Devinw.Playerprefmanager.Editor
                 return;
 
             foreach (var entry in _store.LoadKeys())
-                _rows.Add(new PrefRow { Key = entry.Key, Type = entry.Type, Value = ReadValue(entry) });
-        }
-
-        private static string ReadValue(PlayerPrefEntry entry)
-        {
-            switch (entry.Type)
-            {
-                case PlayerPrefType.Int:
-                    return PlayerPrefs.GetInt(entry.Key).ToString(CultureInfo.InvariantCulture);
-                case PlayerPrefType.Float:
-                    return PlayerPrefs.GetFloat(entry.Key).ToString(CultureInfo.InvariantCulture);
-                default:
-                    return PlayerPrefs.GetString(entry.Key);
-            }
+                _rows.Add(new PrefRow { Key = entry.Key, Type = entry.Type, Value = PlayerPrefValue.Read(entry) });
         }
 
         private bool Matches(string key)
