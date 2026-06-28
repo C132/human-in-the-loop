@@ -1,0 +1,16 @@
+{
+    "name": "Xrcadia.UI",
+    "rootNamespace": "Xrcadia.UI",
+    "references": [
+        "Xrcadia.Core"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
