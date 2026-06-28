@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Devinw.Playerprefmanager.Editor
+namespace XRCADIA.PrefHub.Editor
 {
     /// <summary>
     /// Discovers the set of PlayerPref keys for the current project.

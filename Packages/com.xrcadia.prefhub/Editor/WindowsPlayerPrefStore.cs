@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 using Microsoft.Win32;
 using UnityEngine;
 
-namespace Devinw.Playerprefmanager.Editor
+namespace XRCADIA.PrefHub.Editor
 {
     /// <summary>
     /// Reads PlayerPref keys on Windows, where Unity stores them under

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Devinw.Playerprefmanager.Editor
+namespace XRCADIA.PrefHub.Editor
 {
     /// <summary>
     /// Entry point for discovering PlayerPref keys. <see cref="Create"/> returns the

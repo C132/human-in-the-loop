@@ -1,7 +1,7 @@
 {
   "dependencies": {
-    "com.devinw.playerprefmanager": {
-      "version": "file:com.devinw.playerprefmanager",
+    "com.xrcadia.prefhub": {
+      "version": "file:com.xrcadia.prefhub",
       "depth": 0,
       "source": "embedded",
       "dependencies": {

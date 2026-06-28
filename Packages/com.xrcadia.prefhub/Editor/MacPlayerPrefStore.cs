@@ -5,7 +5,7 @@ using System.Xml;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
 
-namespace Devinw.Playerprefmanager.Editor
+namespace XRCADIA.PrefHub.Editor
 {
     /// <summary>
     /// Reads PlayerPref keys on macOS, where Unity stores them in the
@@ -40,7 +40,7 @@ namespace Devinw.Playerprefmanager.Editor
             }
             catch (XmlException exception)
             {
-                Debug.LogWarning($"PlayerPrefManager: could not parse preferences for {_domain}. {exception.Message}");
+                Debug.LogWarning($"PrefHub: could not parse preferences for {_domain}. {exception.Message}");
                 return entries;
             }
 
@@ -87,7 +87,7 @@ namespace Devinw.Playerprefmanager.Editor
             }
             catch (System.Exception exception)
             {
-                Debug.LogWarning($"PlayerPrefManager: failed to read preferences. {exception.Message}");
+                Debug.LogWarning($"PrefHub: failed to read preferences. {exception.Message}");
                 return null;
             }
         }

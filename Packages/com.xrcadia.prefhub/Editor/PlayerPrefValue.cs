@@ -1,7 +1,7 @@
 using System.Globalization;
 using UnityEngine;
 
-namespace Devinw.Playerprefmanager.Editor
+namespace XRCADIA.PrefHub.Editor
 {
     /// <summary>
     /// Reads and writes PlayerPref values as strings, handling type parsing and

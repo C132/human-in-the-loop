@@ -1,4 +1,4 @@
-namespace Devinw.Playerprefmanager.Editor
+namespace XRCADIA.PrefHub.Editor
 {
     /// <summary>
     /// The value type a <see cref="UnityEngine.PlayerPrefs"/> entry is stored as.

@@ -1,0 +1,21 @@
+{
+  "name": "com.xrcadia.prefhub",
+  "version": "0.1.0",
+  "displayName": "xrcadia.prefhub",
+  "description": "The home for your PlayerPrefs. View, edit, add, and delete every saved preference from one editor window — no code, no registry spelunking, no guessing which keys exist.",
+  "unity": "6000.5",
+  "unityRelease": "0f1",
+  "author": {
+    "name": "xrcadia"
+  },
+  "keywords": [
+    "playerprefs",
+    "editor",
+    "preferences",
+    "tools",
+    "workflow"
+  ],
+  "dependencies": {
+    "com.unity.test-framework": "1.6.0"
+  }
+}

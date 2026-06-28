@@ -1,7 +1,8 @@
 using NUnit.Framework;
 using UnityEngine;
+using XRCADIA.PrefHub.Editor;
 
-namespace Devinw.Playerprefmanager.Editor.Tests
+namespace XRCADIA.PrefHub.EditorTests
 {
     public sealed class PlayerPrefValueTests
     {

@@ -2,14 +2,15 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-namespace Devinw.Playerprefmanager.Editor
+namespace XRCADIA.PrefHub.Editor
 {
     /// <summary>
-    /// An editor window for viewing, editing, adding and deleting the project's
-    /// <see cref="PlayerPrefs"/>. Keys are discovered through an <see cref="IPlayerPrefStore"/>;
-    /// values are read and written through Unity's PlayerPrefs API.
+    /// PrefHub — an editor window for viewing, editing, adding and deleting the
+    /// project's <see cref="PlayerPrefs"/>. Keys are discovered through an
+    /// <see cref="IPlayerPrefStore"/>; values are read and written through Unity's
+    /// PlayerPrefs API.
     /// </summary>
-    public sealed class PlayerPrefManagerWindow : EditorWindow
+    public sealed class PrefHubWindow : EditorWindow
     {
         private sealed class PrefRow
         {
@@ -34,13 +35,13 @@ namespace Devinw.Playerprefmanager.Editor
         private string _newValue = string.Empty;
 
         /// <summary>
-        /// Opens (or focuses) the Player Pref Manager window.
+        /// Opens (or focuses) the PrefHub window.
         /// </summary>
-        [MenuItem("Tools/Player Pref Manager")]
+        [MenuItem("xrcadia/PrefHub/Manager")]
         public static void ShowWindow()
         {
-            var window = GetWindow<PlayerPrefManagerWindow>();
-            window.titleContent = new GUIContent("Player Prefs");
+            var window = GetWindow<PrefHubWindow>();
+            window.titleContent = new GUIContent("PrefHub");
             window.minSize = new Vector2(420f, 240f);
             window.Show();
         }

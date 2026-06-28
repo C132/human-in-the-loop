@@ -1,0 +1,23 @@
+{
+    "name": "XRCADIA.PrefHub.EditorTests",
+    "rootNamespace": "XRCADIA.PrefHub.EditorTests",
+    "references": [
+        "XRCADIA.PrefHub",
+        "XRCADIA.PrefHub.Editor"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "nunit.framework.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
