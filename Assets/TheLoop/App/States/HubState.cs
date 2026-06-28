@@ -1,6 +1,4 @@
-using System.Threading.Tasks;
 using Xrcadia.Core.StateMachine;
-using Debug = UnityEngine.Debug;
 
 namespace TheLoop.App.States
 {
@@ -12,12 +10,5 @@ namespace TheLoop.App.States
     public sealed class HubState : GameStateBase
     {
         public override GameState Id => GameState.Hub;
-
-        public override Task Enter(StateContext context)
-        {
-            base.Enter(context);
-            Debug.Log("[Hub] Entered Hub (placeholder — XRC-93).");
-            return Task.CompletedTask;
-        }
     }
 }
