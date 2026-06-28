@@ -33,7 +33,8 @@ namespace TheLoop.App
             services.Register(new SettingsService(store));
             services.Register(new SaveService(store));
             services.Register(new AudioService());
-            services.Register(new XRService(/* OpenXR starter wired in XRC-94 */));
+            services.Register(new XRService(/* OpenXR starter wired with headset bring-up */));
+            services.Register(new MRService(/* real OpenXR space/passthrough check wired later */));
 
             // --- State machine ---
             var loading = new LoadingProgress();
@@ -67,6 +68,7 @@ namespace TheLoop.App
             machine.Register(new OnboardingState());
             machine.Register(new MainMenuState());
             machine.Register(new HubState());
+            machine.Register(new MRSetupState());
             machine.Register(new ShutdownState());
             machine.Register(new FatalErrorState());
             machine.Register(new LoadingOverlayState());
@@ -81,6 +83,7 @@ namespace TheLoop.App
             router.Register(new OnboardingScreen(), context);
             router.Register(new MainMenuScreen(), context);
             router.Register(new HubScreen(), context);
+            router.Register(new MRSetupScreen(), context);
             router.Register(new LoadingScreen(), context);
             router.Register(new SettingsScreen(), context);
             router.Register(new ErrorModalScreen(), context);

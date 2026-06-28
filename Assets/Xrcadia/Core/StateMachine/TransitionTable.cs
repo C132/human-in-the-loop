@@ -35,6 +35,7 @@ namespace Xrcadia.Core.StateMachine
             // editing the manager. They have no states registered yet.
             t.Allow(GameState.Hub, GameState.MRSetup);
             t.Allow(GameState.MRSetup, GameState.Session);
+            t.Allow(GameState.MRSetup, GameState.Hub);      // cancel setup (XRC-94)
             t.Allow(GameState.Session, GameState.Results);
             t.Allow(GameState.Results, GameState.Hub);
 
