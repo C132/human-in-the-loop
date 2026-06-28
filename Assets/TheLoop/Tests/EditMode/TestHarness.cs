@@ -19,18 +19,22 @@ namespace TheLoop.Tests.EditMode
         public SettingsService Settings { get; }
         public SaveService Save { get; }
         public SpyService Spy { get; }
+        public IKeyValueStore Store { get; }
         public List<StateChange> Changes { get; } = new List<StateChange>();
         public bool QuitCalled { get; private set; }
 
         public TestHarness(bool onboarded = false, bool hasSave = false)
         {
             var store = new InMemoryKeyValueStore();
+            Store = store;
             if (onboarded) store.SetInt("hitl.onboarding.completed", 1);
-            if (hasSave) store.SetInt("hitl.save.exists", 1);
 
             Services = new ServiceRegistry();
             Settings = new SettingsService(store);
             Save = new SaveService(store);
+
+            // Seed a valid profile through the real path so HasSave is genuinely backed by data.
+            if (hasSave) Save.CreateNew().GetAwaiter().GetResult();
             Spy = new SpyService();
             Services.Register(Settings);
             Services.Register(Save);

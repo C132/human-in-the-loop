@@ -28,7 +28,8 @@ namespace TheLoop.App.States
                     return true;
 
                 case GameTrigger.NewGame:
-                    // TODO (XRC-92): if Context.Save.HasSave, confirm overwrite before creating.
+                    // CreateNew overwrites any existing profile; the Main Menu screen gates this
+                    // behind an overwrite confirmation when a save already exists (XRC-92).
                     Context.Machine.TransitionTo(GameState.Hub, reporter =>
                         Context.Save.CreateNew(reporter)).Forget();
                     return true;

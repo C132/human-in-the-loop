@@ -13,7 +13,7 @@ namespace TheLoop.Editor
     {
         // Mirror of the persistence keys owned by SettingsService / SaveService (Xrcadia.Core).
         private const string OnboardingKey = "hitl.onboarding.completed";
-        private const string SaveKey = "hitl.save.exists";
+        private const string SaveKey = "hitl.save.profile";
 
         [MenuItem("TheLoop/Reset First Launch (clear save + onboarding)")]
         private static void ResetFirstLaunch()
