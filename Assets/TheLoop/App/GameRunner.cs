@@ -26,12 +26,12 @@ namespace TheLoop.App
             _router = router;
         }
 
-        void Update()
+        private void Update()
         {
             _machine?.Tick(Time.deltaTime);
         }
 
-        void OnApplicationQuit()
+        private void OnApplicationQuit()
         {
             // Safety net if the app is closed without routing through Shutdown.
             if (!_servicesDown && _services != null)

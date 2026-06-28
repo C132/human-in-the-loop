@@ -22,7 +22,7 @@ namespace Xrcadia.Core.Services
         public string Name => "Settings";
 
         /// <summary>True on the very first launch (or until onboarding is marked complete).</summary>
-        public bool IsFirstLaunch => _store.GetInt(KeyOnboarded, 0) == 0;
+        public bool FirstLaunch => _store.GetInt(KeyOnboarded, 0) == 0;
 
         public float MasterVolume { get; private set; } = 1f;
 

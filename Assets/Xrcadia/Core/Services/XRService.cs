@@ -19,22 +19,22 @@ namespace Xrcadia.Core.Services
 
         public string Name => "XR";
 
-        public bool IsActive { get; private set; }
+        public bool Active { get; private set; }
 
         public async Task Initialize()
         {
             if (_startXr == null)
             {
-                IsActive = false;
+                Active = false;
                 return;
             }
 
-            IsActive = await _startXr();
+            Active = await _startXr();
         }
 
         public void Shutdown()
         {
-            IsActive = false;
+            Active = false;
         }
     }
 }

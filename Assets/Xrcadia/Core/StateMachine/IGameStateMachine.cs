@@ -17,7 +17,7 @@ namespace Xrcadia.Core.StateMachine
         GameState CurrentState { get; }
 
         /// <summary>True while a transition is mid-flight (used to reject re-entrant requests).</summary>
-        bool IsTransitioning { get; }
+        bool Transitioning { get; }
 
         /// <summary>Simple from/to event for audio/analytics consumers.</summary>
         event Action<GameState, GameState> StateChanged;

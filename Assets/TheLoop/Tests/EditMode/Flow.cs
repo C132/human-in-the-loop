@@ -10,7 +10,7 @@ namespace TheLoop.Tests.EditMode
         public static async Task WaitUntilIdle(TestHarness h)
         {
             var guard = 0;
-            while (h.Machine.IsTransitioning && guard++ < 10000)
+            while (h.Machine.Transitioning && guard++ < 10000)
             {
                 await Task.Yield();
             }

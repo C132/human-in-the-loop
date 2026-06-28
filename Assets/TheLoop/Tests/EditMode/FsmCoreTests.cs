@@ -76,7 +76,7 @@ namespace TheLoop.Tests.EditMode
             var secondRan = false;
 
             var first = h.Machine.TransitionTo(GameState.Hub, async _ => await gate.Task);
-            Assert.IsTrue(h.Machine.IsTransitioning);
+            Assert.IsTrue(h.Machine.Transitioning);
 
             LogAssert.Expect(LogType.Warning, new Regex("already in flight"));
             await h.Machine.TransitionTo(GameState.Hub, async _ =>

@@ -18,7 +18,7 @@ namespace TheLoop.App.States
                 return false;
             }
 
-            var target = Context.Settings.IsFirstLaunch ? GameState.Onboarding : GameState.MainMenu;
+            var target = Context.Settings.FirstLaunch ? GameState.Onboarding : GameState.MainMenu;
             Context.Machine.GoTo(target).Forget();
             return true;
         }

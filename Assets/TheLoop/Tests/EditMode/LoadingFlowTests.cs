@@ -54,10 +54,10 @@ namespace TheLoop.Tests.EditMode
             await first.Machine.TransitionTo(GameState.Splash, first.BootWork);
             await first.Machine.GoTo(GameState.Title);
 
-            Assert.IsTrue(first.Settings.IsFirstLaunch);
+            Assert.IsTrue(first.Settings.FirstLaunch);
             await first.Machine.Fire(GameTrigger.StartPressed);
             Assert.AreEqual(GameState.Onboarding, first.Machine.CurrentBaseState);
-            Assert.IsFalse(first.Settings.IsFirstLaunch, "onboarding marks itself complete on entry");
+            Assert.IsFalse(first.Settings.FirstLaunch, "onboarding marks itself complete on entry");
 
             await first.Machine.Fire(GameTrigger.OnboardingComplete);
             Assert.AreEqual(GameState.MainMenu, first.Machine.CurrentBaseState);

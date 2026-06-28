@@ -51,7 +51,7 @@ namespace Xrcadia.Core.StateMachine
 
         public GameState CurrentState => _overlays.Count > 0 ? _overlays[_overlays.Count - 1].Id : CurrentBaseState;
 
-        public bool IsTransitioning { get; private set; }
+        public bool Transitioning { get; private set; }
 
         public event Action<GameState, GameState> StateChanged;
         public event Action<StateChange> Transitioned;
@@ -283,15 +283,15 @@ namespace Xrcadia.Core.StateMachine
 
         bool BeginTransition()
         {
-            if (IsTransitioning)
+            if (Transitioning)
             {
                 return false;
             }
 
-            IsTransitioning = true;
+            Transitioning = true;
             return true;
         }
 
-        void EndTransition() => IsTransitioning = false;
+        void EndTransition() => Transitioning = false;
     }
 }
