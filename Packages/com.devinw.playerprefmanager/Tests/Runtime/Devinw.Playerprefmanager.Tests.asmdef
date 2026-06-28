@@ -1,0 +1,11 @@
+{
+    "name": "Devinw.Playerprefmanager.Tests",
+    "references": [
+        "Devinw.Playerprefmanager"
+    ],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": []
+}

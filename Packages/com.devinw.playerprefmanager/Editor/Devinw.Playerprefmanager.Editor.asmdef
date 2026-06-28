@@ -1,0 +1,10 @@
+{
+    "name": "Devinw.Playerprefmanager.Editor",
+    "references": [
+      "Devinw.Playerprefmanager"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": []
+}

@@ -1,0 +1,14 @@
+{
+    "name": "Devinw.Playerprefmanager.Editor.Tests",
+    "references": [
+        "Devinw.Playerprefmanager.Editor",
+        "Devinw.Playerprefmanager"
+    ],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": []
+}
