@@ -1,7 +1,7 @@
 using UnityEngine;
 using Xrcadia.Core.Services;
 
-namespace Xrcadia.App
+namespace TheLoop.App
 {
     /// <summary>PlayerPrefs-backed persistence for the runtime (first-launch flag, save flag, settings).</summary>
     public sealed class PlayerPrefsKeyValueStore : IKeyValueStore

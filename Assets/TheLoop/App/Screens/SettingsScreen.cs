@@ -2,7 +2,7 @@ using UnityEngine.UIElements;
 using Xrcadia.Core.StateMachine;
 using Xrcadia.UI;
 
-namespace Xrcadia.App.Screens
+namespace TheLoop.App.Screens
 {
     /// <summary>
     /// Settings overlay screen (XRC-91 slice). Placeholder content with a single working

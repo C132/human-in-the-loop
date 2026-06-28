@@ -1,7 +1,7 @@
 using Xrcadia.Core.StateMachine;
 using Debug = UnityEngine.Debug;
 
-namespace Xrcadia.App.States
+namespace TheLoop.App.States
 {
     /// <summary>
     /// Root of the front-end (XRC-89 slice). Each option fires a state transition — no direct

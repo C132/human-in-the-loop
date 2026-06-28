@@ -2,7 +2,7 @@ using UnityEngine.UIElements;
 using Xrcadia.Core.StateMachine;
 using Xrcadia.UI;
 
-namespace Xrcadia.App.Screens
+namespace TheLoop.App.Screens
 {
     /// <summary>
     /// Main Menu screen (XRC-89 slice). Continue is enabled only when a save exists; every

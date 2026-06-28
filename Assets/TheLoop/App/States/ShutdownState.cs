@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using Xrcadia.Core.StateMachine;
 
-namespace Xrcadia.App.States
+namespace TheLoop.App.States
 {
     /// <summary>
     /// Terminal state. Tears down core services in reverse order then quits the application

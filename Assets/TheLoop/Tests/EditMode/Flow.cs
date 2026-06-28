@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using Xrcadia.Core.StateMachine;
 
-namespace Xrcadia.Tests.EditMode
+namespace TheLoop.Tests.EditMode
 {
     /// <summary>Shared helpers for driving the front-end flow in tests.</summary>
     internal static class Flow

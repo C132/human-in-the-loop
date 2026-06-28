@@ -2,7 +2,7 @@ using System.Threading.Tasks;
 using NUnit.Framework;
 using Xrcadia.Core.StateMachine;
 
-namespace Xrcadia.Tests.EditMode
+namespace TheLoop.Tests.EditMode
 {
     /// <summary>
     /// XRC-88 acceptance: cold boot reaches an interactive Main Menu with no manual steps;

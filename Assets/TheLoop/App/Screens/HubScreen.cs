@@ -2,7 +2,7 @@ using UnityEngine.UIElements;
 using Xrcadia.Core.StateMachine;
 using Xrcadia.UI;
 
-namespace Xrcadia.App.Screens
+namespace TheLoop.App.Screens
 {
     /// <summary>Placeholder Hub screen (real shell is XRC-93). Confirms the transition and routes back.</summary>
     public sealed class HubScreen : ScreenBase

@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using Xrcadia.Core.StateMachine;
 
-namespace Xrcadia.App.States
+namespace TheLoop.App.States
 {
     /// <summary>
     /// Cold-boot entry. Initializes core services (save, settings, audio, XR) behind the

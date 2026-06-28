@@ -3,7 +3,7 @@ using Xrcadia.Core.Services;
 using Xrcadia.Core.StateMachine;
 using Xrcadia.UI;
 
-namespace Xrcadia.App
+namespace TheLoop.App
 {
     /// <summary>
     /// The persistent bootstrap object. Holds the FSM, services and UI router, pumps the

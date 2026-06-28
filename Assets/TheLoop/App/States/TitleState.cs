@@ -1,6 +1,6 @@
 using Xrcadia.Core.StateMachine;
 
-namespace Xrcadia.App.States
+namespace TheLoop.App.States
 {
     /// <summary>
     /// "Look / press to start" gate. On the primary action, routes to Onboarding on first

@@ -1,6 +1,6 @@
 using Xrcadia.Core.StateMachine;
 
-namespace Xrcadia.App.States
+namespace TheLoop.App.States
 {
     /// <summary>
     /// Loading overlay state. Behaviorless — the visuals/progress live in the Loading screen

@@ -2,7 +2,7 @@ using System;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Xrcadia.App
+namespace TheLoop.App
 {
     public static class TaskExtensions
     {

@@ -2,7 +2,7 @@ using UnityEngine.UIElements;
 using Xrcadia.Core.StateMachine;
 using Xrcadia.UI;
 
-namespace Xrcadia.App.Screens
+namespace TheLoop.App.Screens
 {
     public sealed class TitleScreen : ScreenBase
     {

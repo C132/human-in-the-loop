@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Xrcadia.App.States;
+using TheLoop.App.States;
 using Xrcadia.Core.Services;
 using Xrcadia.Core.StateMachine;
 using Xrcadia.Core.Transitions;
 
-namespace Xrcadia.Tests.EditMode
+namespace TheLoop.Tests.EditMode
 {
     /// <summary>
     /// Builds a fully-registered <see cref="GameStateManager"/> with the real app states and

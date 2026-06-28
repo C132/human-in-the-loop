@@ -1,6 +1,6 @@
 {
-    "name": "Xrcadia.App",
-    "rootNamespace": "Xrcadia.App",
+    "name": "TheLoop.App",
+    "rootNamespace": "TheLoop.App",
     "references": [
         "Xrcadia.Core",
         "Xrcadia.UI"

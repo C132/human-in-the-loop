@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using Xrcadia.Core.StateMachine;
 
-namespace Xrcadia.App.States
+namespace TheLoop.App.States
 {
     /// <summary>
     /// Studio/engine branding. Skippable after a minimum dwell; auto-advances to Title at the

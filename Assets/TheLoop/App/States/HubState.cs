@@ -2,7 +2,7 @@ using System.Threading.Tasks;
 using Xrcadia.Core.StateMachine;
 using Debug = UnityEngine.Debug;
 
-namespace Xrcadia.App.States
+namespace TheLoop.App.States
 {
     /// <summary>
     /// Placeholder landing state so Continue / New Game have a defined destination (no

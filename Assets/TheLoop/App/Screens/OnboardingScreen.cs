@@ -2,7 +2,7 @@ using UnityEngine.UIElements;
 using Xrcadia.Core.StateMachine;
 using Xrcadia.UI;
 
-namespace Xrcadia.App.Screens
+namespace TheLoop.App.Screens
 {
     /// <summary>Placeholder first-run screen. Real content is XRC-90.</summary>
     public sealed class OnboardingScreen : ScreenBase

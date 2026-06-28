@@ -1,9 +1,9 @@
 {
-    "name": "Xrcadia.Tests.EditMode",
-    "rootNamespace": "Xrcadia.Tests.EditMode",
+    "name": "TheLoop.Tests.EditMode",
+    "rootNamespace": "TheLoop.Tests.EditMode",
     "references": [
         "Xrcadia.Core",
-        "Xrcadia.App",
+        "TheLoop.App",
         "Xrcadia.UI",
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner"

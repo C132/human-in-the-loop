@@ -1,12 +1,12 @@
 using UnityEngine;
-using Xrcadia.App.Screens;
-using Xrcadia.App.States;
+using TheLoop.App.Screens;
+using TheLoop.App.States;
 using Xrcadia.Core.Services;
 using Xrcadia.Core.StateMachine;
 using Xrcadia.Core.Transitions;
 using Xrcadia.UI;
 
-namespace Xrcadia.App
+namespace TheLoop.App
 {
     /// <summary>
     /// Composition root. Runs automatically after the scene loads (no manual steps), wires the

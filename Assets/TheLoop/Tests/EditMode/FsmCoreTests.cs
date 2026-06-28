@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.TestTools;
 using Xrcadia.Core.StateMachine;
 
-namespace Xrcadia.Tests.EditMode
+namespace TheLoop.Tests.EditMode
 {
     /// <summary>FSM mechanics (XRC-87): guards, overlay stack, re-entrancy.</summary>
     public sealed class FsmCoreTests

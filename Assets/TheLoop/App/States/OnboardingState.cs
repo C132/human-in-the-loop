@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using Xrcadia.Core.StateMachine;
 
-namespace Xrcadia.App.States
+namespace TheLoop.App.States
 {
     /// <summary>
     /// First-run placeholder. Onboarding *content* is owned by XRC-90; this state only proves
