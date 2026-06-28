@@ -162,7 +162,7 @@ namespace Xrcadia.Core.StateMachine
                 catch (Exception ex)
                 {
                     Debug.LogError($"[FSM] Transition work to {target} failed: {ex}");
-                    await RouteToErrorOrRecover();
+                    await RouteError(ClassifyError(ex, target));
                     return;
                 }
 
@@ -184,11 +184,13 @@ namespace Xrcadia.Core.StateMachine
 
         // -------- Internals (no guard; callers hold it) --------
 
-        private async Task ChangeBase(GameState target)
+        private async Task ChangeBase(GameState target, bool forced = false)
         {
             var from = CurrentBaseState;
 
-            if (!_table.IsAllowed(from, target))
+            // Error/recovery moves are forced: they must always be reachable so no failure can
+            // dead-end (XRC-99). Every normal edge is still validated against the table.
+            if (!forced && !_table.IsAllowed(from, target))
             {
                 Debug.LogError($"[FSM] Illegal transition {from} -> {target}; rejected.");
                 return;
@@ -257,19 +259,97 @@ namespace Xrcadia.Core.StateMachine
             Emit(new StateChange(from, restored, StateChangeKind.Pop));
         }
 
-        private async Task RouteToErrorOrRecover()
+        // -------- Error & recovery (XRC-99) --------
+
+        public async Task RaiseError(GameError error)
         {
-            // Minimal error path for this vertical (full recovery is XRC-99). Ensure we never
-            // leave the Loading overlay stuck up, then surface an error overlay if available.
+            if (error == null) return;
+
+            if (!BeginTransition())
+            {
+                Debug.LogWarning("[FSM] RaiseError ignored — a transition is already in flight.");
+                return;
+            }
+
+            try
+            {
+                await RouteError(error);
+            }
+            finally
+            {
+                EndTransition();
+            }
+        }
+
+        public async Task ResumeFromError()
+        {
+            await PopOverlay(); // pops the error overlay, resuming the paused base state
+            _context.Error.Clear();
+        }
+
+        public async Task SafeExitToMainMenu()
+        {
+            if (!BeginTransition()) return;
+            try
+            {
+                while (_overlays.Count > 0)
+                {
+                    await PopOverlayInternal();
+                }
+
+                await ChangeBase(GameState.MainMenu, forced: true);
+                _context.Error.Clear();
+            }
+            finally
+            {
+                EndTransition();
+            }
+        }
+
+        // Unguarded router — callers either already hold the transition guard (the TransitionTo
+        // catch) or wrap this in BeginTransition (RaiseError). Recoverable failures push the
+        // error overlay over the preserved base; fatal failures abandon it for the Fatal state.
+        // With no error state registered it still unwinds cleanly — never a soft-lock.
+        private async Task RouteError(GameError error)
+        {
+            _context.Error.Set(error);
+
             while (_overlays.Count > 0)
             {
                 await PopOverlayInternal();
+            }
+
+            if (error.Severity == ErrorSeverity.Fatal)
+            {
+                if (_states.ContainsKey(GameState.Fatal))
+                {
+                    await ChangeBase(GameState.Fatal, forced: true);
+                }
+
+                return;
             }
 
             if (_states.ContainsKey(GameState.ErrorModal))
             {
                 await PushOverlayInternal(GameState.ErrorModal);
             }
+        }
+
+        private static GameError ClassifyError(Exception ex, GameState target)
+        {
+            if (ex is GameErrorException typed)
+            {
+                return typed.ToError();
+            }
+
+            return new GameError
+            {
+                Severity = ErrorSeverity.Recoverable,
+                Title = "Something went wrong",
+                Message = $"The transition to {target} could not complete.",
+                Source = "Transition",
+                Exception = ex,
+            };
         }
 
         private IGameState TopState()
