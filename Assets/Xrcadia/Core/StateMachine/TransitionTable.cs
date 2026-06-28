@@ -37,6 +37,7 @@ namespace Xrcadia.Core.StateMachine
             t.Allow(GameState.MRSetup, GameState.Session);
             t.Allow(GameState.MRSetup, GameState.Hub);      // cancel setup (XRC-94)
             t.Allow(GameState.Session, GameState.Results);
+            t.Allow(GameState.Session, GameState.Hub);      // abandon run (XRC-96)
             t.Allow(GameState.Results, GameState.Hub);
 
             // --- Trigger resolution ---
