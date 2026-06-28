@@ -42,10 +42,10 @@ namespace TheLoop.Tests.EditMode
         }
 
         [Test]
-        public async Task Continue_WithCorruptedSave_RoutesToRecovery_NoCrash()
+        public async Task Continue_WithCorruptedSave_RoutesToFatal_NoCrash()
         {
             var h = new TestHarness(onboarded: true); // start with no save
-            h.Machine.Register(new PlaceholderOverlay(GameState.ErrorModal)); // real overlay is XRC-99
+            h.Machine.Register(new PlaceholderOverlay(GameState.Fatal)); // corrupt save is fatal (XRC-99)
             h.Store.SetString(SaveService.ProfileKey, "}{ corrupt"); // a record exists, but unreadable
             await Flow.DriveToMainMenu(h);
 
@@ -55,8 +55,7 @@ namespace TheLoop.Tests.EditMode
             await h.Machine.Fire(GameTrigger.Continue);
             await Flow.WaitUntilIdle(h);
 
-            Assert.AreEqual(GameState.ErrorModal, h.Machine.CurrentState, "corruption routes to recovery");
-            Assert.AreEqual(GameState.MainMenu, h.Machine.CurrentBaseState, "base preserved; no crash");
+            Assert.AreEqual(GameState.Fatal, h.Machine.CurrentBaseState, "a corrupt save is fatal, never a crash");
             Assert.IsFalse(h.Machine.Transitioning);
         }
     }

@@ -29,6 +29,7 @@ namespace Xrcadia.Core.StateMachine
             t.Allow(GameState.MainMenu, GameState.Hub);
             t.Allow(GameState.MainMenu, GameState.Shutdown);
             t.Allow(GameState.Hub, GameState.MainMenu);     // exit to menu (XRC-93)
+            t.Allow(GameState.Fatal, GameState.MainMenu);   // fatal-error safe exit (XRC-99)
 
             // Downstream edges declared for completeness so later issues plug in without
             // editing the manager. They have no states registered yet.

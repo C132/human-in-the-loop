@@ -21,6 +21,7 @@ namespace Xrcadia.Core.StateMachine
         Session,
         Results,
         Shutdown,
+        Fatal,          // unrecoverable error landing state (XRC-99); safe-exits to MainMenu
 
         // Overlay states (push/pop on a stack, render above the base state).
         Loading,

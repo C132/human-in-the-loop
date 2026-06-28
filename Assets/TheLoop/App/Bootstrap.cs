@@ -68,8 +68,10 @@ namespace TheLoop.App
             machine.Register(new MainMenuState());
             machine.Register(new HubState());
             machine.Register(new ShutdownState());
+            machine.Register(new FatalErrorState());
             machine.Register(new LoadingOverlayState());
             machine.Register(new SettingsOverlayState());
+            machine.Register(new ErrorModalState());
         }
 
         private static void RegisterScreens(UIRouter router, StateContext context)
@@ -81,6 +83,8 @@ namespace TheLoop.App
             router.Register(new HubScreen(), context);
             router.Register(new LoadingScreen(), context);
             router.Register(new SettingsScreen(), context);
+            router.Register(new ErrorModalScreen(), context);
+            router.Register(new FatalErrorScreen(), context);
         }
     }
 }

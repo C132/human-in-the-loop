@@ -41,5 +41,17 @@ namespace Xrcadia.Core.StateMachine
         Task PushOverlay(GameState overlay);
 
         Task PopOverlay();
+
+        /// <summary>
+        /// Route a failure (XRC-99). Recoverable errors push the error overlay over the current
+        /// state; fatal errors abandon it for the Fatal state. Always lands somewhere defined.
+        /// </summary>
+        Task RaiseError(GameError error);
+
+        /// <summary>Resolve a recoverable error: pop the overlay and resume the prior state.</summary>
+        Task ResumeFromError();
+
+        /// <summary>Give up / fatal exit: unwind to the Main Menu from anywhere, never a dead-end.</summary>
+        Task SafeExitToMainMenu();
     }
 }

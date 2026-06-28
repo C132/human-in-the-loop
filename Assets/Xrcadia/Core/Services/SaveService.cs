@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using UnityEngine;
+using Xrcadia.Core.StateMachine;
 using Xrcadia.Core.Transitions;
 
 namespace Xrcadia.Core.Services
@@ -22,10 +23,15 @@ namespace Xrcadia.Core.Services
         public int currency;
     }
 
-    /// <summary>Thrown when a save cannot be read (unparseable or an unsupported version).</summary>
-    public sealed class SaveCorruptionException : Exception
+    /// <summary>
+    /// Thrown when a save cannot be read (unparseable or an unsupported version). A corrupt save
+    /// is fatal (XRC-99) — it carries that severity so the transition service safe-exits to the
+    /// Main Menu rather than looping the player back into a broken load.
+    /// </summary>
+    public sealed class SaveCorruptionException : FatalError
     {
-        public SaveCorruptionException(string message, Exception inner = null) : base(message, inner) { }
+        public SaveCorruptionException(string message, Exception inner = null)
+            : base("Save", "Save data error", message, inner) { }
     }
 
     /// <summary>
