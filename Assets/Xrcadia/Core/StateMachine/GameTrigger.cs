@@ -16,5 +16,7 @@ namespace Xrcadia.Core.StateMachine
         OpenSettings,
         CloseSettings,
         Quit,
+        LaunchRun,
+        ExitToMenu,
     }
 }
