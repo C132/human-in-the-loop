@@ -1,0 +1,116 @@
+/* Human in the Loop — shared world-space UI theme (XRC-86).
+   Placeholder art; tokens are the contract per-screen styling builds on. Final visual
+   design is owned by Art direction (XRC-84). */
+
+:root {
+    --hitl-bg: rgba(8, 12, 20, 0.92);
+    --hitl-panel: rgba(18, 26, 40, 0.96);
+    --hitl-accent: rgb(86, 196, 255);
+    --hitl-accent-dim: rgb(44, 110, 150);
+    --hitl-text: rgb(232, 240, 248);
+    --hitl-text-dim: rgb(150, 166, 184);
+    --hitl-danger: rgb(255, 120, 110);
+
+    --hitl-space-s: 8px;
+    --hitl-space-m: 16px;
+    --hitl-space-l: 32px;
+    --hitl-radius: 12px;
+
+    --hitl-type-title: 64px;
+    --hitl-type-heading: 36px;
+    --hitl-type-body: 24px;
+}
+
+.screen {
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+}
+
+.panel {
+    background-color: var(--hitl-panel);
+    border-radius: var(--hitl-radius);
+    padding: var(--hitl-space-l);
+    min-width: 520px;
+    align-items: center;
+}
+
+.scrim {
+    background-color: var(--hitl-bg);
+}
+
+.title {
+    font-size: var(--hitl-type-title);
+    color: var(--hitl-text);
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+    margin-bottom: var(--hitl-space-m);
+}
+
+.subtitle {
+    font-size: var(--hitl-type-body);
+    color: var(--hitl-text-dim);
+    -unity-text-align: middle-center;
+    margin-bottom: var(--hitl-space-l);
+}
+
+.heading {
+    font-size: var(--hitl-type-heading);
+    color: var(--hitl-text);
+    -unity-font-style: bold;
+    margin-bottom: var(--hitl-space-m);
+}
+
+.menu-button {
+    font-size: var(--hitl-type-body);
+    color: var(--hitl-text);
+    background-color: var(--hitl-accent-dim);
+    border-width: 0;
+    border-radius: var(--hitl-radius);
+    padding-top: var(--hitl-space-m);
+    padding-bottom: var(--hitl-space-m);
+    padding-left: var(--hitl-space-l);
+    padding-right: var(--hitl-space-l);
+    margin-top: var(--hitl-space-s);
+    margin-bottom: var(--hitl-space-s);
+    min-width: 360px;
+    transition-duration: 0.1s;
+}
+
+.menu-button:hover {
+    background-color: var(--hitl-accent);
+    scale: 1.03 1.03;
+}
+
+.menu-button:disabled {
+    background-color: rgba(60, 72, 90, 0.6);
+    color: var(--hitl-text-dim);
+    opacity: 0.6;
+}
+
+.prompt {
+    font-size: var(--hitl-type-heading);
+    color: var(--hitl-accent);
+    -unity-text-align: middle-center;
+}
+
+.progress-track {
+    width: 420px;
+    height: 14px;
+    background-color: rgba(255, 255, 255, 0.12);
+    border-radius: 7px;
+    margin-top: var(--hitl-space-m);
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background-color: var(--hitl-accent);
+}
+
+.status-text {
+    font-size: var(--hitl-type-body);
+    color: var(--hitl-text-dim);
+    margin-top: var(--hitl-space-s);
+}

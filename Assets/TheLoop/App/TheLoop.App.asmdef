@@ -1,0 +1,17 @@
+{
+    "name": "TheLoop.App",
+    "rootNamespace": "TheLoop.App",
+    "references": [
+        "Xrcadia.Core",
+        "Xrcadia.UI"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
