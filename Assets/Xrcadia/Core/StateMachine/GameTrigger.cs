@@ -20,5 +20,6 @@ namespace Xrcadia.Core.StateMachine
         ExitToMenu,
         BeginSession,
         Cancel,
+        Abandon,
     }
 }

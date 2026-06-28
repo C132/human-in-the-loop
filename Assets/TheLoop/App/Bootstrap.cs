@@ -74,6 +74,7 @@ namespace TheLoop.App
             machine.Register(new FatalErrorState());
             machine.Register(new LoadingOverlayState());
             machine.Register(new SettingsOverlayState());
+            machine.Register(new PausedState());
             machine.Register(new ErrorModalState());
         }
 
@@ -88,6 +89,7 @@ namespace TheLoop.App
             router.Register(new SessionScreen(), context);
             router.Register(new LoadingScreen(), context);
             router.Register(new SettingsScreen(), context);
+            router.Register(new PauseScreen(), context);
             router.Register(new ErrorModalScreen(), context);
             router.Register(new FatalErrorScreen(), context);
         }
