@@ -19,12 +19,12 @@ namespace Xrcadia.Core.StateMachine
     /// </summary>
     public sealed class GameStateManager : IGameStateMachine
     {
-        readonly Dictionary<GameState, IGameState> _states = new Dictionary<GameState, IGameState>();
-        readonly List<IGameState> _overlays = new List<IGameState>();
-        readonly TransitionTable _table;
-        readonly StateContext _context;
+        private readonly Dictionary<GameState, IGameState> _states = new Dictionary<GameState, IGameState>();
+        private readonly List<IGameState> _overlays = new List<IGameState>();
+        private readonly TransitionTable _table;
+        private readonly StateContext _context;
 
-        IGameState _base;
+        private IGameState _base;
 
         /// <summary>
         /// Minimum time the Loading overlay stays up during <see cref="TransitionTo"/> to
@@ -184,7 +184,7 @@ namespace Xrcadia.Core.StateMachine
 
         // -------- Internals (no guard; callers hold it) --------
 
-        async Task ChangeBase(GameState target)
+        private async Task ChangeBase(GameState target)
         {
             var from = CurrentBaseState;
 
@@ -217,7 +217,7 @@ namespace Xrcadia.Core.StateMachine
             Emit(new StateChange(from, target, StateChangeKind.Replace));
         }
 
-        async Task PushOverlayInternal(GameState overlay)
+        private async Task PushOverlayInternal(GameState overlay)
         {
             if (!overlay.IsOverlay())
             {
@@ -239,7 +239,7 @@ namespace Xrcadia.Core.StateMachine
             Emit(new StateChange(from, overlay, StateChangeKind.Push));
         }
 
-        async Task PopOverlayInternal()
+        private async Task PopOverlayInternal()
         {
             if (_overlays.Count == 0)
             {
@@ -257,7 +257,7 @@ namespace Xrcadia.Core.StateMachine
             Emit(new StateChange(from, restored, StateChangeKind.Pop));
         }
 
-        async Task RouteToErrorOrRecover()
+        private async Task RouteToErrorOrRecover()
         {
             // Minimal error path for this vertical (full recovery is XRC-99). Ensure we never
             // leave the Loading overlay stuck up, then surface an error overlay if available.
@@ -272,16 +272,16 @@ namespace Xrcadia.Core.StateMachine
             }
         }
 
-        IGameState TopState()
+        private IGameState TopState()
             => _overlays.Count > 0 ? _overlays[_overlays.Count - 1] : _base;
 
-        void Emit(StateChange change)
+        private void Emit(StateChange change)
         {
             Transitioned?.Invoke(change);
             StateChanged?.Invoke(change.From, change.To);
         }
 
-        bool BeginTransition()
+        private bool BeginTransition()
         {
             if (Transitioning)
             {
@@ -292,6 +292,6 @@ namespace Xrcadia.Core.StateMachine
             return true;
         }
 
-        void EndTransition() => Transitioning = false;
+        private void EndTransition() => Transitioning = false;
     }
 }

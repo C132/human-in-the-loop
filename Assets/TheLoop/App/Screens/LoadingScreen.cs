@@ -10,9 +10,9 @@ namespace TheLoop.App.Screens
     /// </summary>
     public sealed class LoadingScreen : ScreenBase
     {
-        VisualElement _fill;
-        Label _status;
-        bool _subscribed;
+        private VisualElement _fill;
+        private Label _status;
+        private bool _subscribed;
 
         public override GameState State => GameState.Loading;
 
@@ -58,7 +58,7 @@ namespace TheLoop.App.Screens
             }
         }
 
-        void OnProgress(float value, string status)
+        private void OnProgress(float value, string status)
         {
             _fill.style.width = Length.Percent(value * 100f);
             _status.text = status ?? string.Empty;

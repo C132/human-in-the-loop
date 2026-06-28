@@ -17,12 +17,12 @@ namespace TheLoop.App
     /// </summary>
     public static class Bootstrap
     {
-        static GameRunner _runner;
+        private static GameRunner Runner;
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
-        static void Launch()
+        private static void Launch()
         {
-            if (_runner != null)
+            if (Runner != null)
             {
                 return; // Already booted (guards against domain-reload re-entry).
             }
@@ -52,14 +52,14 @@ namespace TheLoop.App
             var go = new GameObject("HitL.GameRunner");
             Object.DontDestroyOnLoad(go);
             host.transform.SetParent(go.transform, true);
-            _runner = go.AddComponent<GameRunner>();
-            _runner.Initialize(machine, services, router);
+            Runner = go.AddComponent<GameRunner>();
+            Runner.Initialize(machine, services, router);
 
             // --- Go ---
             machine.Start().Forget();
         }
 
-        static void RegisterStates(GameStateManager machine)
+        private static void RegisterStates(GameStateManager machine)
         {
             machine.Register(new BootState());
             machine.Register(new SplashState());
@@ -72,7 +72,7 @@ namespace TheLoop.App
             machine.Register(new SettingsOverlayState());
         }
 
-        static void RegisterScreens(UIRouter router, StateContext context)
+        private static void RegisterScreens(UIRouter router, StateContext context)
         {
             router.Register(new SplashScreen(), context);
             router.Register(new TitleScreen(), context);

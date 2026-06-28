@@ -11,8 +11,8 @@ namespace Xrcadia.Core.Services
     /// </summary>
     public sealed class ServiceRegistry
     {
-        readonly Dictionary<Type, IAppService> _byType = new Dictionary<Type, IAppService>();
-        readonly List<IAppService> _ordered = new List<IAppService>();
+        private readonly Dictionary<Type, IAppService> _byType = new Dictionary<Type, IAppService>();
+        private readonly List<IAppService> _ordered = new List<IAppService>();
 
         public void Register<T>(T service) where T : class, IAppService
         {

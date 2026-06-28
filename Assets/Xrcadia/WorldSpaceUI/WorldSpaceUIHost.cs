@@ -19,10 +19,10 @@ namespace Xrcadia.UI
         public const string ThemeResourcePath = "UI/HitLTheme";
 
         // Comfortable default placement: ~1.5 m ahead, near table height. Tunable by XRC-94.
-        static readonly Vector3 DefaultWorldPosition = new Vector3(0f, 1.1f, 1.5f);
+        private static readonly Vector3 DefaultWorldPosition = new Vector3(0f, 1.1f, 1.5f);
 
-        PanelRenderer _renderer;
-        VisualElement _root;
+        private PanelRenderer _renderer;
+        private VisualElement _root;
 
         public VisualElement Root => _root;
 
@@ -72,7 +72,7 @@ namespace Xrcadia.UI
             RootChanged?.Invoke(root);
         }
 
-        static PanelSettings LoadOrCreatePanelSettings()
+        private static PanelSettings LoadOrCreatePanelSettings()
         {
             var settings = Resources.Load<PanelSettings>(PanelSettingsResourcePath);
             if (settings != null)
@@ -89,7 +89,7 @@ namespace Xrcadia.UI
             return fallback;
         }
 
-        static void ApplyTheme(VisualElement root)
+        private static void ApplyTheme(VisualElement root)
         {
             if (root == null)
                 return;

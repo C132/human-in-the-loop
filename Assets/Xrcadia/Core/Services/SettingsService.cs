@@ -9,10 +9,10 @@ namespace Xrcadia.Core.Services
     /// </summary>
     public sealed class SettingsService : IAppService
     {
-        const string KeyOnboarded = "hitl.onboarding.completed";
-        const string KeyMasterVolume = "hitl.audio.master";
+        private const string KeyOnboarded = "hitl.onboarding.completed";
+        private const string KeyMasterVolume = "hitl.audio.master";
 
-        readonly IKeyValueStore _store;
+        private readonly IKeyValueStore _store;
 
         public SettingsService(IKeyValueStore store)
         {
@@ -48,6 +48,6 @@ namespace Xrcadia.Core.Services
 
         public void Shutdown() { }
 
-        float ReadVolume() => _store.GetInt(KeyMasterVolume, 100) / 100f;
+        private float ReadVolume() => _store.GetInt(KeyMasterVolume, 100) / 100f;
     }
 }

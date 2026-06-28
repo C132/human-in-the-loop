@@ -9,12 +9,12 @@ namespace TheLoop.App.States
     /// </summary>
     public sealed class SplashState : GameStateBase, ITriggerHandler
     {
-        readonly float _minDwell;
-        readonly float _autoAdvance;
+        private readonly float _minDwell;
+        private readonly float _autoAdvance;
 
-        float _elapsed;
-        bool _skipRequested;
-        bool _leaving;
+        private float _elapsed;
+        private bool _skipRequested;
+        private bool _leaving;
 
         public SplashState(float minDwellSeconds = 1.5f, float autoAdvanceSeconds = 3.5f)
         {

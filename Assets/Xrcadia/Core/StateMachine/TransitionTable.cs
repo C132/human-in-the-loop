@@ -11,8 +11,8 @@ namespace Xrcadia.Core.StateMachine
     /// </summary>
     public sealed class TransitionTable
     {
-        readonly HashSet<(GameState from, GameState to)> _edges = new HashSet<(GameState, GameState)>();
-        readonly Dictionary<(GameState from, GameTrigger trigger), GameState> _triggers
+        private readonly HashSet<(GameState from, GameState to)> _edges = new HashSet<(GameState, GameState)>();
+        private readonly Dictionary<(GameState from, GameTrigger trigger), GameState> _triggers
             = new Dictionary<(GameState, GameTrigger), GameState>();
 
         public static TransitionTable BuildDefault()

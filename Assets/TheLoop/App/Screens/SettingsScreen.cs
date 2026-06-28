@@ -11,7 +11,7 @@ namespace TheLoop.App.Screens
     /// </summary>
     public sealed class SettingsScreen : ScreenBase
     {
-        Slider _volume;
+        private Slider _volume;
 
         public override GameState State => GameState.Settings;
 

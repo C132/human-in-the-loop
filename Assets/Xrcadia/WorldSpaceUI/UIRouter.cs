@@ -13,12 +13,12 @@ namespace Xrcadia.UI
     /// </summary>
     public sealed class UIRouter
     {
-        readonly IUIHost _host;
-        readonly Dictionary<GameState, ScreenBase> _screens = new Dictionary<GameState, ScreenBase>();
-        readonly List<ScreenBase> _shownOverlays = new List<ScreenBase>();
+        private readonly IUIHost _host;
+        private readonly Dictionary<GameState, ScreenBase> _screens = new Dictionary<GameState, ScreenBase>();
+        private readonly List<ScreenBase> _shownOverlays = new List<ScreenBase>();
 
-        ScreenBase _currentBase;
-        IGameStateMachine _machine;
+        private ScreenBase _currentBase;
+        private IGameStateMachine _machine;
 
         public UIRouter(IUIHost host)
         {
@@ -60,13 +60,13 @@ namespace Xrcadia.UI
 
         // Attaches every registered screen to the freshly (re)built root. Screens keep their own
         // show/hide state, so a reload restores the visible screen without router intervention.
-        void OnRootChanged(VisualElement root)
+        private void OnRootChanged(VisualElement root)
         {
             foreach (var screen in _screens.Values)
                 root.Add(screen.Root);
         }
 
-        void OnTransitioned(StateChange change)
+        private void OnTransitioned(StateChange change)
         {
             switch (change.Kind)
             {
@@ -82,7 +82,7 @@ namespace Xrcadia.UI
             }
         }
 
-        void SwapBase(GameState target)
+        private void SwapBase(GameState target)
         {
             _currentBase?.Hide();
 
@@ -98,7 +98,7 @@ namespace Xrcadia.UI
             }
         }
 
-        void PushOverlay(GameState overlay)
+        private void PushOverlay(GameState overlay)
         {
             if (!_screens.TryGetValue(overlay, out var screen))
             {
@@ -110,7 +110,7 @@ namespace Xrcadia.UI
             _shownOverlays.Add(screen);
         }
 
-        void PopOverlay(GameState overlay)
+        private void PopOverlay(GameState overlay)
         {
             if (_screens.TryGetValue(overlay, out var screen))
             {

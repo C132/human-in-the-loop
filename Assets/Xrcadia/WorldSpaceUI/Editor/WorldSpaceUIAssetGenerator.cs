@@ -15,8 +15,8 @@ namespace Xrcadia.Editor
     /// </summary>
     public static class WorldSpaceUIAssetGenerator
     {
-        const string ResourcesDir = "Assets/Resources/UI";
-        const string PanelSettingsPath = ResourcesDir + "/HitLPanelSettings.asset";
+        private const string ResourcesDir = "Assets/Resources/UI";
+        private const string PanelSettingsPath = ResourcesDir + "/HitLPanelSettings.asset";
 
         [MenuItem("Xrcadia/UI/Generate World-Space UI Assets")]
         public static void Generate()
@@ -42,7 +42,7 @@ namespace Xrcadia.Editor
             Debug.Log($"[Xrcadia] {(created ? "Created" : "Updated")} world-space PanelSettings at {PanelSettingsPath}.");
         }
 
-        static void AssignDefaultTheme(PanelSettings settings)
+        private static void AssignDefaultTheme(PanelSettings settings)
         {
             if (settings.themeStyleSheet != null)
             {
@@ -78,7 +78,7 @@ namespace Xrcadia.Editor
         /// Unity 6 API surface. If the property isn't present, the panel stays screen-space and a
         /// note is logged (XRC-86 owns the deep world-space rendering setup).
         /// </summary>
-        static void TrySetWorldSpaceRenderMode(PanelSettings settings)
+        private static void TrySetWorldSpaceRenderMode(PanelSettings settings)
         {
             var prop = typeof(PanelSettings).GetProperty("renderMode",
                 BindingFlags.Public | BindingFlags.Instance);

@@ -12,10 +12,10 @@ namespace TheLoop.App
     /// </summary>
     public sealed class GameRunner : MonoBehaviour
     {
-        GameStateManager _machine;
-        ServiceRegistry _services;
-        UIRouter _router;
-        bool _servicesDown;
+        private GameStateManager _machine;
+        private ServiceRegistry _services;
+        private UIRouter _router;
+        private bool _servicesDown;
 
         public GameStateManager Machine => _machine;
 

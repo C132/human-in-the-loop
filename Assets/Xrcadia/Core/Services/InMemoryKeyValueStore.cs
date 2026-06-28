@@ -5,7 +5,7 @@ namespace Xrcadia.Core.Services
     /// <summary>Non-persistent store for tests and headless runs.</summary>
     public sealed class InMemoryKeyValueStore : IKeyValueStore
     {
-        readonly Dictionary<string, object> _values = new Dictionary<string, object>();
+        private readonly Dictionary<string, object> _values = new Dictionary<string, object>();
 
         public bool HasKey(string key) => _values.ContainsKey(key);
 

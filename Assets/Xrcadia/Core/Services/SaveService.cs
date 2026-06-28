@@ -10,9 +10,9 @@ namespace Xrcadia.Core.Services
     /// </summary>
     public sealed class SaveService : IAppService
     {
-        const string KeySaveExists = "hitl.save.exists";
+        private const string KeySaveExists = "hitl.save.exists";
 
-        readonly IKeyValueStore _store;
+        private readonly IKeyValueStore _store;
 
         public SaveService(IKeyValueStore store)
         {

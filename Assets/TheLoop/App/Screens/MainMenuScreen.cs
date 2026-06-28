@@ -10,7 +10,7 @@ namespace TheLoop.App.Screens
     /// </summary>
     public sealed class MainMenuScreen : ScreenBase
     {
-        Button _continueButton;
+        private Button _continueButton;
 
         public override GameState State => GameState.MainMenu;
 

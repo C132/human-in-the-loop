@@ -10,7 +10,7 @@ namespace Xrcadia.Core.Services
     /// </summary>
     public sealed class XRService : IAppService
     {
-        readonly Func<Task<bool>> _startXr;
+        private readonly Func<Task<bool>> _startXr;
 
         public XRService(Func<Task<bool>> startXr = null)
         {

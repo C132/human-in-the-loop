@@ -11,7 +11,7 @@ namespace TheLoop.App.States
     /// </summary>
     public sealed class BootState : GameStateBase
     {
-        bool _started;
+        private bool _started;
 
         public override GameState Id => GameState.Boot;
 

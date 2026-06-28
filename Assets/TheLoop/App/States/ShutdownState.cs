@@ -12,7 +12,7 @@ namespace TheLoop.App.States
     /// </summary>
     public sealed class ShutdownState : GameStateBase
     {
-        readonly Action _quit;
+        private readonly Action _quit;
 
         public ShutdownState(Action quit = null)
         {
@@ -30,7 +30,7 @@ namespace TheLoop.App.States
             return Task.CompletedTask;
         }
 
-        static void Quit()
+        private static void Quit()
         {
 #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
