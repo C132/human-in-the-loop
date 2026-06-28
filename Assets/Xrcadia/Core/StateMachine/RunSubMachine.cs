@@ -37,13 +37,26 @@ namespace Xrcadia.Core.StateMachine
     }
 
     /// <summary>
+    /// The committed debrief Results produces from an outcome (XRC-97): the payout awarded and a
+    /// readable "what the agent learned" recap. Bound by the Results screen for display.
+    /// </summary>
+    public sealed class RunDebrief
+    {
+        public RunResult Result;
+        public int CurrencyAwarded;
+        public int XpAwarded;
+        public string LearningRecap;
+    }
+
+    /// <summary>
     /// Shared run holder on <see cref="StateContext"/>: the live sub-machine while a run is in
-    /// flight, and the outcome the Results state reads after it completes.
+    /// flight, the outcome the Results state consumes, and the debrief it produces.
     /// </summary>
     public sealed class RunReport
     {
         public RunSubMachine Active { get; set; }
         public RunOutcome LastOutcome { get; set; }
+        public RunDebrief LastDebrief { get; set; }
     }
 
     /// <summary>

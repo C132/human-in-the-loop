@@ -70,6 +70,7 @@ namespace TheLoop.App
             machine.Register(new HubState());
             machine.Register(new MRSetupState());
             machine.Register(new SessionState());
+            machine.Register(new ResultsState());
             machine.Register(new ShutdownState());
             machine.Register(new FatalErrorState());
             machine.Register(new LoadingOverlayState());
@@ -87,6 +88,7 @@ namespace TheLoop.App
             router.Register(new HubScreen(), context);
             router.Register(new MRSetupScreen(), context);
             router.Register(new SessionScreen(), context);
+            router.Register(new ResultsScreen(), context);
             router.Register(new LoadingScreen(), context);
             router.Register(new SettingsScreen(), context);
             router.Register(new PauseScreen(), context);
