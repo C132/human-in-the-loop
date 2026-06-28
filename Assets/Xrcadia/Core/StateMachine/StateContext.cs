@@ -28,5 +28,6 @@ namespace Xrcadia.Core.StateMachine
         public SaveService Save => Services.Get<SaveService>();
         public SettingsService Settings => Services.Get<SettingsService>();
         public AudioService Audio => Services.Get<AudioService>();
+        public MRService MR => Services.Get<MRService>();
     }
 }
