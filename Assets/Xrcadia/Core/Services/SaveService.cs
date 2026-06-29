@@ -21,6 +21,7 @@ namespace Xrcadia.Core.Services
         public int agentXp;
         public int runsCompleted;
         public int currency;
+        public string agentMemory; // serialized AgentMemory — the agent's "trained" state (XRC-102/103)
     }
 
     /// <summary>
@@ -81,6 +82,7 @@ namespace Xrcadia.Core.Services
                 agentXp = 0,
                 runsCompleted = 0,
                 currency = 0,
+                agentMemory = string.Empty,
             };
             Persist();
 
