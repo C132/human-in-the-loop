@@ -35,6 +35,7 @@ namespace TheLoop.App
             services.Register(new AudioService());
             services.Register(new XRService(/* OpenXR starter wired with headset bring-up */));
             services.Register(new MRService(/* real OpenXR space/passthrough check wired later */));
+            services.Register(new TheLoop.Game.RunService());
 
             // --- State machine ---
             var loading = new LoadingProgress();

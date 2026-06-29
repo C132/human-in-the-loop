@@ -35,6 +35,7 @@ namespace TheLoop.App.States
             Run = new RunSubMachine(new RunContext { Seed = seed });
             Driver = new RunDriver(Run, board, memory);
             context.Run.Active = Run;
+            if (context.Services.TryGet<RunService>(out var run)) run.Current = Driver;
             Run.PhaseChanged += OnPhaseChanged;
 
             _accum = 0f;
@@ -67,6 +68,7 @@ namespace TheLoop.App.States
                 Run.PhaseChanged -= OnPhaseChanged;
             }
 
+            if (Context.Services.TryGet<RunService>(out var run)) run.Current = null;
             return base.Exit();
         }
 

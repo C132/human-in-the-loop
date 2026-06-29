@@ -448,3 +448,80 @@
 
 .outcome-good { color: var(--success); }
 .outcome-bad { color: var(--danger); }
+
+/* ---------- Run board (XRC-104) ---------- */
+
+.board {
+    align-items: center;
+    margin-top: var(--s-3);
+    margin-bottom: var(--s-3);
+}
+
+.board-row {
+    flex-direction: row;
+}
+
+.board-cell {
+    width: 40px;
+    height: 40px;
+    margin: 2px;
+    border-radius: 6px;
+    background-color: var(--panel-inset);
+    border-width: 1px;
+    border-color: var(--line);
+    align-items: center;
+    justify-content: center;
+}
+
+.board-cell:hover {
+    border-color: var(--accent);
+}
+
+.cell-wall {
+    background-color: rgb(70, 66, 76);
+    border-color: rgb(96, 92, 102);
+}
+
+.cell-hazard {
+    background-color: rgba(226, 75, 74, 0.85);
+    border-color: var(--danger);
+}
+
+.cell-reward {
+    background-color: rgba(255, 213, 92, 0.9);
+    border-color: var(--accent);
+}
+
+.cell-start {
+    border-color: var(--text-dim);
+    border-width: 2px;
+}
+
+.cell-goal {
+    background-color: rgba(118, 255, 138, 0.85);
+    border-color: var(--success);
+}
+
+.cell-intent {
+    border-color: var(--accent);
+    border-width: 3px;
+}
+
+.agent-pip {
+    width: 22px;
+    height: 22px;
+    border-radius: 11px;
+    background-color: var(--text);
+    border-width: 2px;
+    border-color: var(--on-accent);
+    display: none;
+}
+
+.agent-pip--on {
+    display: flex;
+}
+
+.brush--selected {
+    border-color: var(--accent);
+    background-color: var(--accent-soft);
+}
