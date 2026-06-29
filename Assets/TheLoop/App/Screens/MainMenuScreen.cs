@@ -23,6 +23,7 @@ namespace TheLoop.App.Screens
             var root = Ui.Scrim();
 
             var panel = Ui.Panel();
+            panel.Add(Ui.Eyebrow("MIXED-REALITY STRATEGY ROGUELIKE"));
             panel.Add(Ui.Title("Human in the Loop"));
 
             // --- Main menu options ---

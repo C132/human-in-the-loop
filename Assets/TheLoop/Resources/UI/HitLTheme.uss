@@ -1,25 +1,59 @@
-/* Human in the Loop — shared world-space UI theme (XRC-86).
-   Placeholder art; tokens are the contract per-screen styling builds on. Final visual
-   design is owned by Art direction (XRC-84). */
+/* Human in the Loop — shared world-space UI theme (XRC-86 / XRC-100).
+   A cohesive design system: deep mixed-reality navy, a cyan "signal" accent, glass panels,
+   crisp type scale and consistent spacing. Built to read as investor-ready across every screen. */
 
 :root {
-    --hitl-bg: rgba(8, 12, 20, 0.92);
-    --hitl-panel: rgba(18, 26, 40, 0.96);
-    --hitl-accent: rgb(86, 196, 255);
-    --hitl-accent-dim: rgb(44, 110, 150);
-    --hitl-text: rgb(232, 240, 248);
-    --hitl-text-dim: rgb(150, 166, 184);
-    --hitl-danger: rgb(255, 120, 110);
+    /* Brand palette — matches the Xrcadia pitch deck: warm amber on near-black, cream text.
+       Surfaces are layered and near-opaque so overlays never bleed the base through. */
+    --bg-0: rgb(10, 9, 12);
+    --bg-1: rgb(16, 14, 18);
+    --scrim: rgba(8, 7, 10, 0.90);
+    --panel: rgb(26, 24, 28);
+    --panel-2: rgb(36, 33, 39);
+    --panel-inset: rgb(19, 17, 21);
 
-    --hitl-space-s: 8px;
-    --hitl-space-m: 16px;
-    --hitl-space-l: 32px;
-    --hitl-radius: 12px;
+    /* Lines (warm, low-contrast) */
+    --line: rgba(255, 216, 130, 0.16);
+    --line-strong: rgba(255, 216, 130, 0.32);
 
-    --hitl-type-title: 64px;
-    --hitl-type-heading: 36px;
-    --hitl-type-body: 24px;
+    /* Accent — signal amber/gold, with a deeper amber for pressed/secondary states */
+    --accent: rgb(255, 213, 92);
+    --accent-deep: rgb(239, 159, 39);
+    --accent-soft: rgba(255, 213, 92, 0.13);
+    --amber: rgb(250, 199, 117);
+    --success: rgb(118, 255, 138);
+    --danger: rgb(226, 75, 74);
+
+    /* Text */
+    --text: rgb(255, 251, 240);
+    --text-dim: rgb(193, 183, 168);
+    --text-faint: rgb(138, 129, 116);
+    --on-accent: rgb(26, 24, 24);
+
+    /* Spacing scale */
+    --s-1: 6px;
+    --s-2: 10px;
+    --s-3: 16px;
+    --s-4: 24px;
+    --s-5: 36px;
+    --s-6: 52px;
+
+    /* Radii */
+    --r-1: 8px;
+    --r-2: 14px;
+    --r-3: 22px;
+
+    /* Type scale */
+    --t-display: 76px;
+    --t-title: 52px;
+    --t-heading: 34px;
+    --t-subtitle: 24px;
+    --t-body: 20px;
+    --t-caption: 16px;
+    --t-label: 15px;
 }
+
+/* ---------- Layout shells ---------- */
 
 .screen {
     flex-grow: 1;
@@ -27,90 +61,390 @@
     justify-content: center;
 }
 
-.panel {
-    background-color: var(--hitl-panel);
-    border-radius: var(--hitl-radius);
-    padding: var(--hitl-space-l);
-    min-width: 520px;
-    align-items: center;
+/* Base-screen backdrop and overlay scrim. A near-opaque deep navy with a faint vignette feel. */
+.scrim {
+    background-color: var(--scrim);
 }
 
-.scrim {
-    background-color: var(--hitl-bg);
+/* The framed content card every screen centers. Near-solid so nothing shows through it. */
+.panel {
+    background-color: var(--panel);
+    border-radius: var(--r-3);
+    border-width: 1px;
+    border-color: var(--line);
+    padding: var(--s-6);
+    min-width: 560px;
+    max-width: 760px;
+    align-items: stretch;
 }
+
+/* A heavier, wider panel for content-rich screens (Hub, Results, Settings). */
+.panel--wide {
+    max-width: 900px;
+    min-width: 720px;
+}
+
+/* ---------- Typography ---------- */
 
 .title {
-    font-size: var(--hitl-type-title);
-    color: var(--hitl-text);
+    font-size: var(--t-title);
+    color: var(--text);
     -unity-font-style: bold;
     -unity-text-align: middle-center;
-    margin-bottom: var(--hitl-space-m);
+    margin-bottom: var(--s-2);
+    letter-spacing: 1px;
 }
 
-.subtitle {
-    font-size: var(--hitl-type-body);
-    color: var(--hitl-text-dim);
+.display {
+    font-size: var(--t-display);
+    color: var(--text);
+    -unity-font-style: bold;
     -unity-text-align: middle-center;
-    margin-bottom: var(--hitl-space-l);
+    letter-spacing: 2px;
 }
 
 .heading {
-    font-size: var(--hitl-type-heading);
-    color: var(--hitl-text);
+    font-size: var(--t-heading);
+    color: var(--text);
     -unity-font-style: bold;
-    margin-bottom: var(--hitl-space-m);
+    -unity-text-align: middle-center;
+    margin-bottom: var(--s-2);
 }
 
-.menu-button {
-    font-size: var(--hitl-type-body);
-    color: var(--hitl-text);
-    background-color: var(--hitl-accent-dim);
-    border-width: 0;
-    border-radius: var(--hitl-radius);
-    padding-top: var(--hitl-space-m);
-    padding-bottom: var(--hitl-space-m);
-    padding-left: var(--hitl-space-l);
-    padding-right: var(--hitl-space-l);
-    margin-top: var(--hitl-space-s);
-    margin-bottom: var(--hitl-space-s);
-    min-width: 360px;
-    transition-duration: 0.1s;
+.subtitle {
+    font-size: var(--t-subtitle);
+    color: var(--text-dim);
+    -unity-text-align: middle-center;
+    white-space: normal;
+    margin-bottom: var(--s-4);
 }
 
-.menu-button:hover {
-    background-color: var(--hitl-accent);
-    scale: 1.03 1.03;
+.body {
+    font-size: var(--t-body);
+    color: var(--text-dim);
+    -unity-text-align: middle-center;
+    white-space: normal;
 }
 
-.menu-button:disabled {
-    background-color: rgba(60, 72, 90, 0.6);
-    color: var(--hitl-text-dim);
-    opacity: 0.6;
+.caption {
+    font-size: var(--t-caption);
+    color: var(--text-faint);
+    -unity-text-align: middle-center;
+    white-space: normal;
 }
 
 .prompt {
-    font-size: var(--hitl-type-heading);
-    color: var(--hitl-accent);
+    font-size: var(--t-subtitle);
+    color: var(--accent);
     -unity-text-align: middle-center;
+    white-space: normal;
 }
 
+/* Small uppercase section label with an accent tick. */
+.section-title {
+    font-size: var(--t-label);
+    color: var(--accent);
+    -unity-font-style: bold;
+    letter-spacing: 2px;
+    margin-bottom: var(--s-2);
+    margin-top: var(--s-4);
+    padding-left: var(--s-2);
+    border-left-width: 3px;
+    border-left-color: var(--accent);
+}
+
+/* Eyebrow over a title (e.g. brand line). */
+.eyebrow {
+    font-size: var(--t-caption);
+    color: var(--accent);
+    -unity-text-align: middle-center;
+    letter-spacing: 4px;
+    margin-bottom: var(--s-2);
+}
+
+/* ---------- Structure ---------- */
+
+.divider {
+    height: 1px;
+    background-color: var(--line);
+    margin-top: var(--s-3);
+    margin-bottom: var(--s-3);
+}
+
+/* A grouped block of settings/rows. */
+.section {
+    background-color: var(--panel-inset);
+    border-radius: var(--r-2);
+    border-width: 1px;
+    border-color: var(--line);
+    padding: var(--s-3);
+    margin-bottom: var(--s-3);
+}
+
+/* A label/value row: label on the left, control on the right. */
+.row {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 52px;
+    padding-left: var(--s-2);
+    padding-right: var(--s-2);
+}
+
+.row__label {
+    font-size: var(--t-body);
+    color: var(--text);
+    flex-shrink: 1;
+}
+
+.button-bar {
+    flex-direction: column;
+    align-items: stretch;
+    margin-top: var(--s-4);
+}
+
+.button-row {
+    flex-direction: row;
+    justify-content: center;
+    margin-top: var(--s-3);
+}
+
+/* Right-aligned stat readout (Hub/Results). */
+.stat {
+    font-size: var(--t-body);
+    color: var(--accent);
+    -unity-font-style: bold;
+}
+
+/* ---------- Buttons ---------- */
+
+.menu-button {
+    font-size: var(--t-body);
+    color: var(--text);
+    background-color: var(--panel-2);
+    border-width: 1px;
+    border-color: var(--line-strong);
+    border-radius: var(--r-2);
+    padding-top: var(--s-3);
+    padding-bottom: var(--s-3);
+    padding-left: var(--s-5);
+    padding-right: var(--s-5);
+    margin-top: var(--s-2);
+    margin-bottom: var(--s-2);
+    -unity-text-align: middle-center;
+    transition-duration: 0.12s;
+    transition-property: background-color, scale, border-color;
+}
+
+.menu-button:hover {
+    background-color: var(--accent-soft);
+    border-color: var(--accent);
+    scale: 1.015 1.015;
+}
+
+.menu-button:active {
+    scale: 0.99 0.99;
+}
+
+.menu-button:focus {
+    border-color: var(--accent);
+}
+
+.menu-button:disabled {
+    background-color: var(--panel-inset);
+    color: var(--text-faint);
+    border-color: var(--line);
+    opacity: 0.7;
+}
+
+/* Primary call-to-action. */
+.button--primary {
+    background-color: var(--accent);
+    color: var(--on-accent);
+    border-color: var(--accent);
+    -unity-font-style: bold;
+}
+
+.button--primary:hover {
+    background-color: rgb(255, 226, 140);
+    border-color: rgb(255, 226, 140);
+}
+
+/* Quiet / destructive-adjacent. */
+.button--ghost {
+    background-color: rgba(0, 0, 0, 0);
+    border-color: var(--line-strong);
+    color: var(--text-dim);
+}
+
+.button--ghost:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-color: var(--text-dim);
+}
+
+.button--danger:hover {
+    background-color: rgba(255, 116, 108, 0.16);
+    border-color: var(--danger);
+}
+
+/* In a centered button bar the buttons stay a comfortable, equal width. */
+.button-bar > .menu-button {
+    align-self: center;
+    min-width: 420px;
+}
+
+.button-row > .menu-button {
+    min-width: 220px;
+    margin-left: var(--s-2);
+    margin-right: var(--s-2);
+}
+
+/* ---------- Sliders ---------- */
+
+.unity-slider {
+    margin-top: var(--s-1);
+    margin-bottom: var(--s-1);
+    min-width: 260px;
+    flex-grow: 1;
+    flex-direction: row;
+    align-items: center;
+}
+
+.unity-slider .unity-base-field__label,
+.unity-slider .unity-base-slider__label {
+    color: var(--text);
+    font-size: var(--t-body);
+    min-width: 200px;
+}
+
+.unity-base-slider--horizontal .unity-base-slider__drag-container {
+    flex-grow: 1;
+    height: 28px;
+    justify-content: center;
+}
+
+.unity-base-slider--horizontal .unity-base-slider__tracker {
+    height: 8px;
+    border-radius: 4px;
+    background-color: var(--panel-inset);
+    border-width: 1px;
+    border-color: var(--line);
+    margin-top: 0;
+}
+
+.unity-base-slider--horizontal .unity-base-slider__dragger {
+    width: 22px;
+    height: 22px;
+    border-radius: 11px;
+    background-color: var(--accent);
+    border-width: 0;
+    margin-top: -11px;
+}
+
+.unity-base-slider__dragger:hover {
+    background-color: rgb(255, 226, 140);
+    scale: 1.1 1.1;
+}
+
+/* ---------- Toggles (rendered as a clean checkbox-switch) ---------- */
+
+.unity-toggle {
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    min-height: 48px;
+    margin-top: var(--s-1);
+    margin-bottom: var(--s-1);
+}
+
+.unity-toggle .unity-toggle__label {
+    color: var(--text);
+    font-size: var(--t-body);
+    flex-grow: 1;
+}
+
+.unity-toggle__input {
+    flex-grow: 0;
+    flex-shrink: 0;
+    min-width: 56px;
+    align-items: center;
+    justify-content: center;
+}
+
+/* A pill "switch": clearly an empty track when off, solid amber when on. */
+.unity-toggle__checkmark {
+    width: 56px;
+    height: 32px;
+    border-radius: 16px;
+    background-color: var(--panel-2);
+    border-width: 2px;
+    border-color: var(--line-strong);
+    -unity-background-image-tint-color: rgba(0, 0, 0, 0);
+}
+
+.unity-toggle:hover .unity-toggle__checkmark {
+    border-color: var(--accent);
+}
+
+.unity-toggle:checked .unity-toggle__checkmark {
+    background-color: var(--accent);
+    border-color: var(--accent);
+}
+
+/* ---------- Progress (Loading) ---------- */
+
 .progress-track {
-    width: 420px;
-    height: 14px;
-    background-color: rgba(255, 255, 255, 0.12);
-    border-radius: 7px;
-    margin-top: var(--hitl-space-m);
+    width: 460px;
+    height: 12px;
+    background-color: var(--panel-inset);
+    border-radius: 6px;
+    border-width: 1px;
+    border-color: var(--line);
+    margin-top: var(--s-4);
     overflow: hidden;
 }
 
 .progress-fill {
     height: 100%;
     width: 0%;
-    background-color: var(--hitl-accent);
+    background-color: var(--accent);
+    border-radius: 6px;
 }
 
 .status-text {
-    font-size: var(--hitl-type-body);
-    color: var(--hitl-text-dim);
-    margin-top: var(--hitl-space-s);
+    font-size: var(--t-caption);
+    color: var(--text-dim);
+    -unity-text-align: middle-center;
+    margin-top: var(--s-3);
 }
+
+/* ---------- Accents for state screens ---------- */
+
+.badge {
+    font-size: var(--t-caption);
+    color: var(--accent);
+    background-color: var(--accent-soft);
+    border-radius: 999px;
+    border-width: 1px;
+    border-color: var(--line-strong);
+    padding-top: var(--s-1);
+    padding-bottom: var(--s-1);
+    padding-left: var(--s-3);
+    padding-right: var(--s-3);
+    -unity-text-align: middle-center;
+    align-self: center;
+    margin-bottom: var(--s-3);
+}
+
+.badge--success {
+    color: var(--success);
+    background-color: rgba(120, 224, 170, 0.14);
+}
+
+.badge--danger {
+    color: var(--danger);
+    background-color: rgba(255, 116, 108, 0.14);
+}
+
+.outcome-good { color: var(--success); }
+.outcome-bad { color: var(--danger); }

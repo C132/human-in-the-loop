@@ -21,13 +21,20 @@ namespace TheLoop.App.Screens
             var root = Ui.Scrim();
 
             var panel = Ui.Panel();
+
+            var badge = new Label("RECOVERABLE");
+            badge.AddToClassList("badge");
+            panel.Add(badge);
+
             _title = Ui.Heading("Something went wrong");
             _message = Ui.Subtitle(string.Empty);
             panel.Add(_title);
             panel.Add(_message);
 
-            panel.Add(Ui.MenuButton("Resume", () => Context.Machine.ResumeFromError().Forget()));
-            panel.Add(Ui.MenuButton("Safe Exit", () => Context.Machine.SafeExitToMainMenu().Forget()));
+            var bar = Ui.ButtonBar();
+            bar.Add(Ui.PrimaryButton("Resume", () => Context.Machine.ResumeFromError().Forget()));
+            bar.Add(Ui.GhostButton("Safe Exit", () => Context.Machine.SafeExitToMainMenu().Forget()));
+            panel.Add(bar);
 
             root.Add(panel);
             return root;

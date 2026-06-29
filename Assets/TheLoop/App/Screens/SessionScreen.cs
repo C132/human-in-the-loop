@@ -21,10 +21,12 @@ namespace TheLoop.App.Screens
             var root = Ui.Scrim();
 
             var panel = Ui.Panel();
+            panel.Add(Ui.Eyebrow("THE RUN"));
             panel.Add(Ui.Heading("Session"));
-            _phase = Ui.Subtitle(string.Empty);
+            _phase = new Label();
+            _phase.AddToClassList("badge");
             panel.Add(_phase);
-            panel.Add(Ui.Prompt("The agent runs the loop you shape — gameplay lands with XRC-78."));
+            panel.Add(Ui.Body("The agent runs the loop you shape — gameplay lands with XRC-78."));
 
             root.Add(panel);
             return root;
@@ -52,6 +54,6 @@ namespace TheLoop.App.Screens
 
         private void OnPhase(RunPhase phase) => Render(phase);
 
-        private void Render(RunPhase? phase) => _phase.text = phase == null ? string.Empty : $"Phase: {phase}";
+        private void Render(RunPhase? phase) => _phase.text = phase == null ? "READY" : phase.Value.ToString().ToUpperInvariant();
     }
 }

@@ -28,20 +28,26 @@ namespace TheLoop.App.Screens
             var root = Ui.Scrim();
 
             var panel = Ui.Panel();
-            _heading = Ui.Heading(string.Empty);
-            _body = Ui.Subtitle(string.Empty);
-            _progress = Ui.Prompt(string.Empty);
-            panel.Add(_heading);
-            panel.Add(_body);
+            _progress = new Label();
+            _progress.AddToClassList("badge");
             panel.Add(_progress);
 
-            _back = Ui.MenuButton("Back", OnBack);
-            _next = Ui.MenuButton("Next", OnNext);
-            panel.Add(_back);
-            panel.Add(_next);
+            _heading = Ui.Heading(string.Empty);
+            _body = Ui.Subtitle(string.Empty);
+            panel.Add(_heading);
+            panel.Add(_body);
+
+            var nav = Ui.ButtonRow();
+            _back = Ui.GhostButton("Back", OnBack);
+            _next = Ui.PrimaryButton("Next", OnNext);
+            nav.Add(_back);
+            nav.Add(_next);
+            panel.Add(nav);
 
             // Skip still sets the onboarded flag (set on state entry), so it never reappears.
-            panel.Add(Ui.MenuButton("Skip", Complete));
+            var skipBar = Ui.ButtonBar();
+            skipBar.Add(Ui.GhostButton("Skip", Complete));
+            panel.Add(skipBar);
 
             root.Add(panel);
             return root;

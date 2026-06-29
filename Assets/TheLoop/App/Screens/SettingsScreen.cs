@@ -1,3 +1,4 @@
+using System;
 using UnityEngine.UIElements;
 using Xrcadia.Core.StateMachine;
 using Xrcadia.UI;
@@ -5,11 +6,9 @@ using Xrcadia.UI;
 namespace TheLoop.App.Screens
 {
     /// <summary>
-    /// Settings overlay screen (XRC-91). Placeholder categories — audio, comfort (MR) and
-    /// accessibility — each wired through the settings service so changes persist across
-    /// restarts. Back pops the overlay, restoring whatever base state it was opened from
-    /// (Main Menu now; Hub and Pause once XRC-93 / XRC-96 land). Graphics, controls and save
-    /// management are stubbed labels — their option lists are out of scope here.
+    /// Settings overlay screen (XRC-91 / XRC-100). Grouped, world-space sections — audio, comfort
+    /// (MR) and accessibility — each wired through the settings service so changes persist across
+    /// restarts. Back pops the overlay, restoring whatever base state it was opened from.
     /// </summary>
     public sealed class SettingsScreen : ScreenBase
     {
@@ -26,23 +25,28 @@ namespace TheLoop.App.Screens
             var root = Ui.Scrim();
 
             var panel = Ui.Panel();
+            panel.AddToClassList("panel--wide");
             panel.Add(Ui.Heading("Settings"));
 
-            panel.Add(Ui.Subtitle("Audio"));
-            _master = AddSlider(panel, "Master Volume", v => Context.Settings.SetMasterVolume(v));
-            _music = AddSlider(panel, "Music Volume", v => Context.Settings.SetMusicVolume(v));
+            var audio = Ui.Section("AUDIO");
+            _master = AddSlider(audio, "Master Volume", v => Context.Settings.SetMasterVolume(v));
+            _music = AddSlider(audio, "Music Volume", v => Context.Settings.SetMusicVolume(v));
+            panel.Add(audio);
 
-            panel.Add(Ui.Subtitle("Comfort"));
-            _vignette = AddToggle(panel, "Comfort vignette", v => Context.Settings.SetComfortVignette(v));
-            _snapTurn = AddToggle(panel, "Snap turning", v => Context.Settings.SetSnapTurn(v));
+            var comfort = Ui.Section("COMFORT");
+            _vignette = AddToggle(comfort, "Comfort vignette", v => Context.Settings.SetComfortVignette(v));
+            _snapTurn = AddToggle(comfort, "Snap turning", v => Context.Settings.SetSnapTurn(v));
+            panel.Add(comfort);
 
-            panel.Add(Ui.Subtitle("Accessibility"));
-            _subtitles = AddToggle(panel, "Subtitles", v => Context.Settings.SetSubtitles(v));
+            var access = Ui.Section("ACCESSIBILITY");
+            _subtitles = AddToggle(access, "Subtitles", v => Context.Settings.SetSubtitles(v));
+            panel.Add(access);
 
-            // Owned elsewhere / tuning out of scope — shown so the category set reads complete.
-            panel.Add(Ui.Prompt("Graphics · Controls · Save management — coming soon."));
+            panel.Add(Ui.Caption("Graphics · Controls · Save management — coming soon."));
 
-            panel.Add(Ui.MenuButton("Back", () => Context.Machine.PopOverlay().Forget()));
+            var bar = Ui.ButtonBar();
+            bar.Add(Ui.GhostButton("Back", () => Context.Machine.PopOverlay().Forget()));
+            panel.Add(bar);
 
             root.Add(panel);
             return root;
@@ -58,7 +62,7 @@ namespace TheLoop.App.Screens
             _subtitles.SetValueWithoutNotify(s.Subtitles);
         }
 
-        private static Slider AddSlider(VisualElement parent, string label, System.Action<float> onChange)
+        private static Slider AddSlider(VisualElement parent, string label, Action<float> onChange)
         {
             var slider = new Slider(label, 0f, 1f);
             slider.RegisterValueChangedCallback(evt => onChange(evt.newValue));
@@ -66,7 +70,7 @@ namespace TheLoop.App.Screens
             return slider;
         }
 
-        private static Toggle AddToggle(VisualElement parent, string label, System.Action<bool> onChange)
+        private static Toggle AddToggle(VisualElement parent, string label, Action<bool> onChange)
         {
             var toggle = new Toggle(label);
             toggle.RegisterValueChangedCallback(evt => onChange(evt.newValue));
