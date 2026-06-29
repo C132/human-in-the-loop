@@ -63,6 +63,15 @@ namespace TheLoop.Game
             }
         }
 
+        /// <summary>Set the Start and Goal cells explicitly (used by the driver and tests).</summary>
+        public void Designate(Coord start, Coord goal)
+        {
+            Start = start;
+            Goal = goal;
+            Set(start, CellType.Start);
+            Set(goal, CellType.Goal);
+        }
+
         public int Count(CellType type)
         {
             var n = 0;
